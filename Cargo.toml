@@ -1,0 +1,13 @@
+[package]
+name = "discord-message-template"
+version = "0.1.0"
+edition = "2024"
+authors = ["zdpk <zdpk@users.noreply.github.com>"]
+description = "A template for creating Discord messages"
+
+[lib]
+name = "discord_message_template"
+path = "src/lib.rs"
+
+[dependencies]
+
