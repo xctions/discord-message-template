@@ -57,17 +57,17 @@ impl GithubEventKind {
 
     pub fn build(&self) -> CreateEmbed {
         match self {
-            GithubEventKind::CommitPushed {
+            Self::CommitPushed {
                 title,
                 owner,
                 repository,
                 branch,
                 author,
                 sha,
-            } => todo!(),
-            GithubEventKind::PrOpened {} => todo!(),
-            GithubEventKind::PrClosed {} => todo!(),
-            GithubEventKind::IssueOpened {} => todo!(),
+            } => Self::_base_message(title, owner, repository, author, branch, sha, Color::BLUE),
+            Self::PrOpened {} => todo!(),
+            Self::PrClosed {} => todo!(),
+            Self::IssueOpened {} => todo!(),
         }
     }
 }
