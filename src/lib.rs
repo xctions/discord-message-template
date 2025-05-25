@@ -1,3 +1,3 @@
 pub fn test() -> String {
-    "Hello, world".to_string()
+    "test".to_string()
 }
