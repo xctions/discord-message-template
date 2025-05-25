@@ -1,3 +1,3 @@
-pub fn test() -> String {
-    "test".to_string()
-}
+use serenity::all::{CreateEmbed, CreateEmbedFooter};
+pub mod base;
+pub mod github;
