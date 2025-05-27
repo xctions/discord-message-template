@@ -1,0 +1,10 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    uses: xctions/workflows/.github/workflows/reusable/cargo/release.yml@main
