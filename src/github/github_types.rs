@@ -2,6 +2,7 @@ use serenity::all::CreateEmbedAuthor;
 
 const GITHUB_BASE_URL: &str = "https://github.com";
 
+#[derive(Debug, Clone)]
 pub struct Repository {
     slug: String,
     name: String,
@@ -54,6 +55,7 @@ impl Repository {
     }
 }
 
+#[derive(Debug, Clone)]
 pub struct Author {
     name: String,
     avatar_url: String,
@@ -76,6 +78,7 @@ impl Author {
     }
 }
 
+#[derive(Debug, Clone)]
 pub struct Commit {
     pub author: Author,
     sha: String,
@@ -84,9 +87,9 @@ pub struct Commit {
 }
 
 impl Commit {
-    pub fn new(author: Author, message: &str, branch: &str, sha: &str) -> Self {
+    pub fn new(author: &Author, message: &str, branch: &str, sha: &str) -> Self {
         Self {
-            author,
+            author: author.clone(),
             sha: sha.to_string(),
             message: message.to_string(),
             branch: branch.to_string(),
