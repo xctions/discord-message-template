@@ -1,4 +1,4 @@
-use serenity::all::{Color, CreateEmbed, CreateEmbedAuthor, CreateEmbedFooter};
+use serenity::all::{Color, CreateEmbed, CreateEmbedFooter};
 use time::{OffsetDateTime, UtcOffset, format_description};
 
 use super::github_types::{Author, Commit, Repository};
@@ -35,7 +35,6 @@ impl GithubTemplate {
         CreateEmbed::new()
             .author(repository.owner_author())
             .title(title)
-            // .url(repository.url())
             .description(commit.message())
             .field("branch", commit.branch_inline_link(&repository), true)
             .field("commit", commit.commit_inline_link(&repository), true)
