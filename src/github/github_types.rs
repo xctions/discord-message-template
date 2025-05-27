@@ -45,7 +45,7 @@ impl Repository {
     }
 
     pub fn owner_author(&self) -> CreateEmbedAuthor {
-        CreateEmbedAuthor::new(self.owner_inline_link())
+        CreateEmbedAuthor::new(self.slug())
             .icon_url(self.owner_avatar_url())
             .url(self.url())
     }
@@ -80,24 +80,19 @@ impl Author {
 
 #[derive(Debug, Clone)]
 pub struct Commit {
-    pub author: Author,
+    // pub author: Author,
     sha: String,
     pub message: String,
     pub branch: String,
 }
 
 impl Commit {
-    pub fn new(author: &Author, message: &str, branch: &str, sha: &str) -> Self {
+    pub fn new(message: &str, branch: &str, sha: &str) -> Self {
         Self {
-            author: author.clone(),
             sha: sha.to_string(),
             message: message.to_string(),
             branch: branch.to_string(),
         }
-    }
-
-    pub fn author(&self) -> &Author {
-        &self.author
     }
 
     pub fn short_sha(&self) -> &str {

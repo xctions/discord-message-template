@@ -14,14 +14,15 @@ pub enum GithubTemplate {
 }
 
 impl GithubTemplate {
-    pub fn commit_pushed(repository: &Repository, commit: &Commit) -> CreateEmbed {
+    pub fn commit_pushed(repository: &Repository, commit: &Commit, author: &Author) -> CreateEmbed {
         CreateEmbed::new()
             .author(repository.owner_author())
-            .title(repository.name())
             .url(repository.url())
-            // .description(commit.message)
+            .title(commit.message())
+            .description(commit.message())
             .field("Repository", repository.owner_inline_link(), true)
             .field("Commit", commit.commit_inline_link(&repository), true)
+            .footer(CreateEmbedFooter::new(author.name()).icon_url(author.avatar_url()))
             .color(Color::BLUE)
     }
 
@@ -31,7 +32,7 @@ impl GithubTemplate {
                 repository,
                 author,
                 commit,
-            } => Self::commit_pushed(repository, commit),
+            } => Self::commit_pushed(repository, commit, author),
             Self::PrOpened {} => todo!(),
             Self::PrClosed {} => todo!(),
             Self::IssueOpened {} => todo!(),
