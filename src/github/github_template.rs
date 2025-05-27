@@ -18,7 +18,7 @@ impl GithubTemplate {
     fn now_formatted() -> String {
         // 2024/06/07 15:04:05.123 +09:00
         let format = format_description::parse(
-            "[year]/[month padding:zero]/[day padding:zero] [hour padding:zero]:[minute padding:zero]:[second padding:zero].[subsecond digits:3] [offset_hour sign:mandatory]:[offset_minute]"
+            "[year]/[month padding:zero]/[day padding:zero] [hour padding:zero]:[minute padding:zero]:[second padding:zero] [offset_hour sign:mandatory]"
         ).unwrap();
 
         let now = OffsetDateTime::now_utc().to_offset(UtcOffset::current_local_offset().unwrap());
@@ -35,7 +35,8 @@ impl GithubTemplate {
         CreateEmbed::new()
             .author(repository.owner_author())
             .title(title)
-            .url(repository.url())
+            // .url(repository.url())
+            .description(commit.message())
             .field("branch", commit.branch_inline_link(&repository), true)
             .field("commit", commit.commit_inline_link(&repository), true)
             .footer(Self::footer(author))
