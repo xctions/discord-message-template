@@ -103,8 +103,20 @@ impl Commit {
         &self.message
     }
 
+    pub fn branch(&self) -> &str {
+        &self.branch
+    }
+
+    pub fn branch_inline_link(&self, repository: &Repository) -> String {
+        format!("[{}]({})", self.branch(), self.branch_url(repository))
+    }
+
     pub fn commit_inline_link(&self, repository: &Repository) -> String {
         format!("[{}]({})", self.short_sha(), self.commit_url(repository))
+    }
+
+    fn branch_url(&self, repository: &Repository) -> String {
+        format!("{}/tree/{}", repository.url(), self.branch)
     }
 
     fn commit_url(&self, repository: &Repository) -> String {

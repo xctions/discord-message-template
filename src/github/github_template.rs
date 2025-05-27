@@ -17,11 +17,12 @@ impl GithubTemplate {
     pub fn commit_pushed(repository: &Repository, commit: &Commit, author: &Author) -> CreateEmbed {
         CreateEmbed::new()
             .author(repository.owner_author())
-            .url(repository.url())
             .title(commit.message())
-            .description(commit.message())
-            .field("Repository", repository.owner_inline_link(), true)
-            .field("Commit", commit.commit_inline_link(&repository), true)
+            .url(repository.url())
+            .field("event", "Commit Push", true)
+            .field("status", "success", true)
+            .field("branch", commit.branch_inline_link(&repository), true)
+            .field("commit", commit.commit_inline_link(&repository), true)
             .footer(CreateEmbedFooter::new(author.name()).icon_url(author.avatar_url()))
             .color(Color::BLUE)
     }
